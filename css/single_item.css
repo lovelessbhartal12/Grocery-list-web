@@ -1,0 +1,45 @@
+.single-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  column-gap: 1.25rem; /* space between checkbox, text, icons */
+  width: 100%;
+}
+
+.single-item p {
+  text-transform: capitalize;
+}
+
+.single-item input[type="checkbox"] {
+  cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+}
+
+.single-item .btn {
+  cursor: pointer;
+  color: #fff;
+  background: burlywood;
+  border: transparent;
+  border-radius: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+}
+
+.single-item .btn:hover {
+  background: purple;
+}
+
+.single-item .remove-btn {
+  background: #222;
+}
+
+.single-item .remove-btn:hover {
+  background: #900e0e;
+}
+.class-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 280px;
+}

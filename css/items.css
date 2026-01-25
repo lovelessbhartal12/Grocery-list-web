@@ -1,0 +1,6 @@
+.items {
+  display: grid;
+  row-gap: 1.5rem; /* space between rows */
+  width: 100%; /* allow grid to expand */
+  max-width: 400px; /* control list width */
+}

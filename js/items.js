@@ -1,10 +1,10 @@
-import { createsingleitems } from "./single-items.js";
+import { createSingleItem } from "./single-item.js";
 
-export function createItems(itemarray) {
-  const container = document.createElement("duv");
+export function createItems(itemsArray) {
+  const container = document.createElement("div");
   container.className = "items";
 
-  itemarray.forEach((item) => {
+  itemsArray.forEach((item) => {
     const itemElement = createSingleItem(item);
     container.appendChild(itemElement);
   });

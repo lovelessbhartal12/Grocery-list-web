@@ -1,27 +1,37 @@
-import { groceryItems } from "./data.js";
 import { createItems } from "./items.js";
 import { createForm } from "./form.js";
-let items = groceryItems;
+
+function getLocalStorage() {
+  const list = localStorage.getItem("grocery-list");
+  if (list) {
+    return JSON.parse(list);
+  }
+  return [];
+}
+
+function setLocalStorage(itemsArray) {
+  localStorage.setItem("grocery-list", JSON.stringify(itemsArray));
+}
+
+let items = getLocalStorage();
 let editId = null;
+
 function render() {
   const app = document.getElementById("app");
   app.innerHTML = "";
-  const formElement = createForm();
+
+  const formElement = createForm(
+    editId,
+    editId ? items.find((item) => item.id === editId) : null,
+  );
 
   const itemsElement = createItems(items);
+
   app.append(formElement);
   app.appendChild(itemsElement);
 }
 
 render();
-export function removeItem(itemId) {
-  items = items.filter((item) => item.id !== itemId);
-  render();
-  setTimeout(() => alert("Item Deleted Successfully!"), 0);
-}
-function generateId() {
-  return Date.now().toString(36) + Math.random().toString(36).substr(2);
-}
 
 export function addItem(itemName) {
   const newItem = {
@@ -30,8 +40,9 @@ export function addItem(itemName) {
     id: generateId(),
   };
   items = [...items, newItem];
+  setLocalStorage(items);
   render();
-  setTimeout(() => alert("Item Added Successfully!"), 0);
+  setTimeout(() => alert("Item Added Successfully!"), 10);
 }
 
 export function updateItemName(newName) {
@@ -42,6 +53,7 @@ export function updateItemName(newName) {
     return item;
   });
   editId = null;
+  setLocalStorage(items);
   render();
   setTimeout(() => alert("Item Updated Successfully!"), 0);
 }
@@ -56,4 +68,26 @@ export function setEditId(itemId) {
       input.focus();
     }
   }, 0);
+}
+
+export function editCompleted(itemId) {
+  items = items.map((item) => {
+    if (item.id === itemId) {
+      return { ...item, completed: !item.completed };
+    }
+    return item;
+  });
+  setLocalStorage(items);
+  render();
+}
+
+export function removeItem(itemId) {
+  items = items.filter((item) => item.id !== itemId);
+  setLocalStorage(items);
+  render();
+  setTimeout(() => alert("Item Deleted Successfully!"), 10);
+}
+
+function generateId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }

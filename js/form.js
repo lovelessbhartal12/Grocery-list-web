@@ -8,7 +8,7 @@ export function createForm(editId, itemToEdit) {
       <input
         type="text"
         class="form-input"
-        placeholder="e.g. eggs"
+        placeholder="e.g. Bread"
       />
       <button type="submit" class="btn">
         add item
@@ -24,9 +24,13 @@ export function createForm(editId, itemToEdit) {
     if (!value) {
       alert("Please provide value");
       return;
+    }
+    if (editId) {
+      updateItemName(value);
     } else {
       addItem(value);
     }
+
     input.value = "";
   });
 

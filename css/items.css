@@ -1,6 +1,5 @@
 .items {
+  margin-top: 2rem;
   display: grid;
-  row-gap: 1.5rem;
-  width: 100%;
-  max-width: 400px;
+  row-gap: 1rem;
 }

@@ -1,5 +1,6 @@
 import { createSingleItem } from "./single-item.js";
 
+// Create Items Container
 export function createItems(itemsArray) {
   const container = document.createElement("div");
   container.className = "items";
